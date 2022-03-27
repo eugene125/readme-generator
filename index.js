@@ -82,7 +82,8 @@ const createFile = (response) => (
 - [Description](#description)
 - [Installation Instructions](#installation-instructions)
 - [Usage](#usage)
-- [Contributors](#constributors)
+- [License](#license)
+- [Contributors](#contributors)
 - [Testing Instructions](#testing-instructions)
 - [Questions](#questions)
 
