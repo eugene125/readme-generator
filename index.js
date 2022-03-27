@@ -2,8 +2,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const fetch = require("node-fetch");
 
-// The idea of using a fetch here is credited to Kelly Jefferies
-// create an async function that does an API fetch for the licenses
+// The idea of using a fetch here is credited to Kelly Jefferies and Daniel Norred
 const fetchLicenses = async (license) => {
     // If the variable of licenseFetch is undefined, then the fetch searches for all possible licenses provided by the API. Otherwise, the fetch request searches for the user chosen license.
     let appendedLicense = license == undefined ? "" : `/${license}`
@@ -13,7 +12,6 @@ const fetchLicenses = async (license) => {
     .then(text => JSON.parse(text))
 };
 
-// create an async function that asks for the user inputs
 const inquirerPrompts = async () => {
     // The allLicenses variable is saved as an array of all the available licenses as the user has not chosen one yet.
     let allLicenses = await fetchLicenses();
@@ -72,8 +70,9 @@ const inquirerPrompts = async () => {
     fs.writeFileSync("README-test.md", createFile(response))
 }
 
-const createFile = (response) => {
-    return `
+const createFile = (response) => (
+    // The encodeURIComponent is formatting the resonse.license.name into a valid URL format so there are no errors when creating the badge
+    `
 [![License](https://img.shields.io/badge/License-${encodeURIComponent(response.license.name)}-Green)](${response.license.html_url})
 
 # ${response.title} 
@@ -110,5 +109,5 @@ If you have questions, you can contact me at the following:
 - GitHub: [${response.username}](https://github.com/${response.username})
 - Email: [${response.email}](mailto:${response.email})
     `
-}
+)
 inquirerPrompts()
