@@ -71,7 +71,7 @@ const inquirerPrompts = async () => {
 }
 
 const createFile = (response) => (
-    // The encodeURIComponent is formatting the resonse.license.name into a valid URL format so there are no errors when creating the badge
+    // The encodeURIComponent is formatting the response.license.name into a valid URL format so there are no errors when creating the badge
     `
 [![License](https://img.shields.io/badge/License-${encodeURIComponent(response.license.name)}-Green)](${response.license.html_url})
 
